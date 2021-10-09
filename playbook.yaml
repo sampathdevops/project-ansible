@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: install httpd
+    yum:
+      name: httpd
+      state: latest
+  - name: start httpd
+    service:
+      name: httpd
+      state: started
+  - name: copy index file
+    copy:
+      src: index.html
+      dest: /var/www/html/
